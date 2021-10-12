@@ -1,0 +1,254 @@
+{
+    "id": 6,
+    "status": "Accepted",
+    "year": 1998,
+    "resource_url": "https://api.discogs.com/releases/6",
+    "uri": "https://www.discogs.com/release/6-Mr-James-Barth-AD-Knockin-Boots-Vol-1-Of-2",
+    "artists": [
+        {
+            "name": "Mr. James Barth & A.D.",
+            "anv": "",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 2,
+            "resource_url": "https://api.discogs.com/artists/2"
+        }
+    ],
+    "artists_sort": "Mr. James Barth & A.D.",
+    "labels": [
+        {
+            "name": "Svek",
+            "catno": "SK025",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 5,
+            "resource_url": "https://api.discogs.com/labels/5"
+        },
+        {
+            "name": "Svek",
+            "catno": "SK 025",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 5,
+            "resource_url": "https://api.discogs.com/labels/5"
+        }
+    ],
+    "series": [],
+    "companies": [],
+    "formats": [
+        {
+            "name": "Vinyl",
+            "qty": "1",
+            "descriptions": [
+                "12\"",
+                "33 \u2153 RPM"
+            ]
+        }
+    ],
+    "data_quality": "Needs Vote",
+    "community": {
+        "have": 624,
+        "want": 784,
+        "rating": {
+            "count": 157,
+            "average": 4.42
+        },
+        "submitter": {
+            "username": "teo",
+            "resource_url": "https://api.discogs.com/users/teo"
+        },
+        "contributors": [
+            {
+                "username": "teo",
+                "resource_url": "https://api.discogs.com/users/teo"
+            },
+            {
+                "username": "SirTweak",
+                "resource_url": "https://api.discogs.com/users/SirTweak"
+            },
+            {
+                "username": "Zyron",
+                "resource_url": "https://api.discogs.com/users/Zyron"
+            },
+            {
+                "username": "Julz72",
+                "resource_url": "https://api.discogs.com/users/Julz72"
+            },
+            {
+                "username": "irionman",
+                "resource_url": "https://api.discogs.com/users/irionman"
+            },
+            {
+                "username": "daniel-phonk",
+                "resource_url": "https://api.discogs.com/users/daniel-phonk"
+            },
+            {
+                "username": "wax_junkie",
+                "resource_url": "https://api.discogs.com/users/wax_junkie"
+            },
+            {
+                "username": "zin",
+                "resource_url": "https://api.discogs.com/users/zin"
+            },
+            {
+                "username": "kwulf",
+                "resource_url": "https://api.discogs.com/users/kwulf"
+            },
+            {
+                "username": "Chimiel",
+                "resource_url": "https://api.discogs.com/users/Chimiel"
+            },
+            {
+                "username": "praz",
+                "resource_url": "https://api.discogs.com/users/praz"
+            },
+            {
+                "username": "disruptive-influence",
+                "resource_url": "https://api.discogs.com/users/disruptive-influence"
+            },
+            {
+                "username": "zevulon",
+                "resource_url": "https://api.discogs.com/users/zevulon"
+            },
+            {
+                "username": "annexxe",
+                "resource_url": "https://api.discogs.com/users/annexxe"
+            },
+            {
+                "username": "SRGhost",
+                "resource_url": "https://api.discogs.com/users/SRGhost"
+            },
+            {
+                "username": "vadz",
+                "resource_url": "https://api.discogs.com/users/vadz"
+            },
+            {
+                "username": "bekozlove",
+                "resource_url": "https://api.discogs.com/users/bekozlove"
+            }
+        ],
+        "data_quality": "Needs Vote",
+        "status": "Accepted"
+    },
+    "format_quantity": 1,
+    "date_added": "2000-09-06T00:00:00-07:00",
+    "date_changed": "2018-09-03T23:53:14-07:00",
+    "num_for_sale": 25,
+    "lowest_price": 11.62,
+    "master_id": 713737,
+    "master_url": "https://api.discogs.com/masters/713737",
+    "title": "Knockin' Boots (Vol 1 Of 2)",
+    "country": "Sweden",
+    "released": "1998-05-00",
+    "notes": "Recorded in NYC, December 1997.\r\n\r\nPrint on vinyl says:\r\nMessage from the Lords of SVEK: \"Bronze, Silver & Gold\"\r\n",
+    "released_formatted": "May 1998",
+    "identifiers": [],
+    "videos": [
+        {
+            "uri": "https://www.youtube.com/watch?v=Blgk9KCLkKk",
+            "title": "Mr. James Barth & A.D. - Above The Skyline",
+            "description": "https://www.discogs.com/Various-The-Lords-Of-Svek-Vol-4/release/5955\n\nMr. James Barth & A.D. - Above The Skyline",
+            "duration": 311,
+            "embed": true
+        },
+        {
+            "uri": "https://www.youtube.com/watch?v=1syV9KIoPvw",
+            "title": "Mr. James Barth & A.D. \u200e- It's All James",
+            "description": "https://www.discogs.com/Mr-James-Barth-AD-Knockin-Boots-Vol-1-Of-2/release/6\r\n\r\nMr. James Barth & A.D. \u200e- It's All James",
+            "duration": 341,
+            "embed": true
+        },
+        {
+            "uri": "https://www.youtube.com/watch?v=CzjsHBhRcpU",
+            "title": "Mr. James Barth & A.D. \u200e- Suckin' Neck",
+            "description": "https://www.discogs.com/Mr-James-Barth-AD-Knockin-Boots-Vol-1-Of-2/release/6\r\n\r\nMr. James Barth & A.D. \u200e- Suckin' Neck",
+            "duration": 316,
+            "embed": true
+        }
+    ],
+    "genres": [
+        "Electronic"
+    ],
+    "styles": [
+        "Techno",
+        "Tech House"
+    ],
+    "tracklist": [
+        {
+            "position": "A1",
+            "type_": "track",
+            "title": "It's All James",
+            "duration": "5:29"
+        },
+        {
+            "position": "B1",
+            "type_": "track",
+            "title": "Above The Skyline",
+            "duration": "5:01"
+        },
+        {
+            "position": "B2",
+            "type_": "track",
+            "title": "Suckin' Neck",
+            "duration": "5:04"
+        }
+    ],
+    "extraartists": [
+        {
+            "name": "Alexi Delano",
+            "anv": "A. Delano",
+            "join": "",
+            "role": "Recorded By, Written-By",
+            "tracks": "",
+            "id": 26,
+            "resource_url": "https://api.discogs.com/artists/26"
+        },
+        {
+            "name": "Cari Lekebusch",
+            "anv": "C. Lekebusch",
+            "join": "",
+            "role": "Recorded By, Written-By",
+            "tracks": "",
+            "id": 27,
+            "resource_url": "https://api.discogs.com/artists/27"
+        }
+    ],
+    "images": [
+        {
+            "type": "primary",
+            "uri": "",
+            "resource_url": "",
+            "uri150": "",
+            "width": 400,
+            "height": 394
+        },
+        {
+            "type": "secondary",
+            "uri": "",
+            "resource_url": "",
+            "uri150": "",
+            "width": 600,
+            "height": 600
+        },
+        {
+            "type": "secondary",
+            "uri": "",
+            "resource_url": "",
+            "uri150": "",
+            "width": 600,
+            "height": 600
+        },
+        {
+            "type": "secondary",
+            "uri": "",
+            "resource_url": "",
+            "uri150": "",
+            "width": 600,
+            "height": 600
+        }
+    ],
+    "thumb": "",
+    "estimated_weight": 230,
+    "blocked_from_sale": false
+}
