@@ -6,7 +6,5 @@ dist/
 .coverage
 env/
 build/
-.39venv/
-.venv/
-.python-version
-.vscode
+venv/
+.vscode/

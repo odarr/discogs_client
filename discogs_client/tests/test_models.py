@@ -24,6 +24,13 @@ class ModelsTestCase(DiscogsClientTestCase):
         """Releases can be fetched and parsed"""
         r = self.d.release(1)
         self.assertEqual(r.title, 'Stockholm')
+    
+    def test_release_marketplace_stats(self):
+        """Releases contain marketplace stats fields"""
+        r = self.d.release(6)
+        self.assertEqual(r.num_for_sale, 25)
+        self.assertEqual(r.lowest_price, 11.62)
+        self.assertEqual(r.blocked_from_sale, False)
 
     def test_master(self):
         """Masters can be fetched and parsed"""

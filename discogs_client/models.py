@@ -495,24 +495,24 @@ class Artist(PrimaryAPIObject):
 
 
 class Release(PrimaryAPIObject):
-    """An object describing a Discogs release."""
-    id = SimpleField()  #:
-    title = SimpleField()  #:
-    year = SimpleField()  #:
-    thumb = SimpleField()  #:
-    data_quality = SimpleField()  #:
-    status = SimpleField()  #:
-    genres = SimpleField()  #:
-    images = SimpleField()  #:
-    country = SimpleField()  #:
-    notes = SimpleField()  #:
-    formats = SimpleField()  #:
-    styles = SimpleField()  #:
-    url = SimpleField(key='uri')  #:
-    videos = ListField('Video')  #:
-    tracklist = ListField('Track')  #:
-    #: A list of ``Artist`` objects. Even though a release could be by one
-    #: artist only, this will always be a list.
+    id = SimpleField()
+    title = SimpleField()
+    year = SimpleField()
+    thumb = SimpleField()
+    data_quality = SimpleField()
+    status = SimpleField()
+    genres = SimpleField()
+    images = SimpleField()
+    country = SimpleField()
+    notes = SimpleField()
+    formats = SimpleField()
+    styles = SimpleField()
+    num_for_sale = SimpleField()
+    lowest_price = SimpleField()
+    blocked_from_sale = SimpleField()
+    url = SimpleField(key='uri')
+    videos = ListField('Video')
+    tracklist = ListField('Track')
     artists = ListField('Artist')
     #: On multi-artist releases this attribute provides a string containing
     #: artists combinend together with a keyword such as "And", "Feat", "Vs",
