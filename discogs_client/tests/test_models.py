@@ -9,6 +9,16 @@ class ModelsTestCase(DiscogsClientTestCase):
         """Artists can be fetched and parsed"""
         a = self.d.artist(1)
         self.assertEqual(a.name, 'Persuader, The')
+        a2 = self.d.release(1).credits[0]
+        self.assertEqual(a2.name, 'Jesper Dahlbäck')
+        self.assertEqual(a2.role, 'Music By [All Tracks By]')
+
+    def test_same_artist(self):
+        """Artists can be fetched and parsed multiple times"""
+        a = self.d.artist(1)
+        self.assertEqual(a.name, 'Persuader, The')
+        b = self.d.artist(1)
+        self.assertEqual(b.name, 'Persuader, The')
 
     def test_release(self):
         """Releases can be fetched and parsed"""
@@ -44,6 +54,42 @@ class ModelsTestCase(DiscogsClientTestCase):
 
     def test_search(self):
         results = self.d.search('trash80')
+        self.assertEqual(len(results), 13)
+        self.assertTrue(isinstance(results[0], Artist))
+        self.assertTrue(isinstance(results[1], Release))
+
+    def test_bytes_search(self):
+        results = self.d.search(b'trash80')
+        self.assertEqual(len(results), 13)
+        self.assertTrue(isinstance(results[0], Artist))
+        self.assertTrue(isinstance(results[1], Release))
+
+    def test_multiterm_search(self):
+        results = self.d.search('trash', '80')
+        self.assertEqual(len(results), 13)
+        self.assertTrue(isinstance(results[0], Artist))
+        self.assertTrue(isinstance(results[1], Release))
+
+    def test_multiterm_bytes_search(self):
+        results = self.d.search(b'trash', b'80')
+        self.assertEqual(len(results), 13)
+        self.assertTrue(isinstance(results[0], Artist))
+        self.assertTrue(isinstance(results[1], Release))
+
+    def test_multiterm_mixed_search(self):
+        results = self.d.search('trash', b'80')
+        self.assertEqual(len(results), 13)
+        self.assertTrue(isinstance(results[0], Artist))
+        self.assertTrue(isinstance(results[1], Release))
+
+    def test_kwargs_search(self):
+        results = self.d.search(artist='trash80')
+        self.assertEqual(len(results), 13)
+        self.assertTrue(isinstance(results[0], Artist))
+        self.assertTrue(isinstance(results[1], Release))
+
+    def test_kwargs_multiterm_search(self):
+        results = self.d.search(title='icarus', artist='trash80')
         self.assertEqual(len(results), 13)
         self.assertTrue(isinstance(results[0], Artist))
         self.assertTrue(isinstance(results[1], Release))

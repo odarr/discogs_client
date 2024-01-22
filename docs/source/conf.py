@@ -18,11 +18,11 @@ sys.path.insert(0, os.path.abspath('../../discogs_client/'))
 # -- Project information -----------------------------------------------------
 
 project = 'python3-discogs-client'
-copyright = '2020-2021, The Joalla Team'
+copyright = '2020-2022, The Joalla Team'
 author = 'The Joalla Team'
 
 # The full version, including alpha/beta/rc tags
-release = '2.3.11'
+release = '2.7'
 
 
 # -- General configuration ---------------------------------------------------
@@ -69,6 +69,12 @@ html_last_updated_fmt = "%b %d, %Y"
 html_logo = '_static/discogs-vinyl-record-mark-50x50.png'
 
 myst_heading_anchors = 7
+myst_enable_extensions = [
+    "substitution"
+]
+myst_substitutions = {
+  "class": "I'm a **substitution**"
+}
 
 # -- autodoc tuning -------------------------------------------------
 # don't show docstring of parent classes on childs
@@ -76,3 +82,11 @@ autodoc_inherit_docstrings = False
 
 # show docstring of class AND __init__ method
 autoclass_content = 'both'
+
+autodoc_default_options = {
+    'members': True,
+    'undoc-members': True,
+    'show-inheritance': True,
+    'private-members': True,
+    'member-order': 'bysource',
+}

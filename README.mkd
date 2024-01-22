@@ -15,7 +15,7 @@ https://python3-discogs-client.readthedocs.org),
 ask for help, suggest features and help others in the [discussion section of our
 github repo](https://github.com/joalla/discogs_client/discussions). If you'd
 like to contribute your code, you are welcome to submit a pull-request as
-described [here](contribution.md).
+described [here](https://python3-discogs-client.readthedocs.io/en/latest/contributing.html#submitting).
 
 There also is the _long running_ thread ["Continuation of the Python Discogs API
 Client"](https://www.discogs.com/forum/thread/822690) on the Discogs developer
@@ -124,6 +124,25 @@ sections in our documentation pages._
 
 ## Marketplace listing
 
+Get listings/releases from a user's inventory (this does not require authentication)
+
+```python
+>>> user = d.user('username')
+>>> inventory = user.inventory
+>>> inventory.count
+1671
+>>> inventory.pages
+34
+>>> inventory.per_page = 100
+>>> inventory.pages
+17
+>>> first_page = inventory.page(0)
+>>> first_page[0]  # get the first listing on the page
+<Listing 2314412455 'Bing Crosby - Der Bingle (10")'>
+>>> first_listing.release
+<Release 2604203 'Der Bingle'>
+```
+
 As an authenticated user you can add, edit and delete your own marketplace listings.
 
 ```python
@@ -147,8 +166,9 @@ docs._
 ## For more information
 
 - Read through [python3-discogs-client.readthedocs.org](https://python3-discogs-client.readthedocs.org) for step by step instructions.
-- Check the [discogs_client Python package documentation](https://python3-discogs-client.readthedocs.org/en/latest/discogs_client.html) to find out details on specific modules, classes, methods, ...
+- Check the [discogs_client Python package documentation](https://python3-discogs-client.readthedocs.org/en/latest/discogs_client.html) to find out details on specific modules, classes, methods, and more.
 - Or just spin up a REPL and use `dir()` on things :)
+- If you have questions or feature requests, please ask in the [discussion section](https://github.com/joalla/discogs_client/discussions).
 
 
 ## Contributing
@@ -157,4 +177,4 @@ docs._
 2. Create a feature branch
 3. Open a pull-request
 
-Some more helpful information on this topic can be found in the [contribution section in our docs](https://python3-discogs-client.readthedocs.org/en/latest/contribution.html).
+Some more helpful information on this topic can be found in the [contribution section in our docs](https://python3-discogs-client.readthedocs.org/en/latest/contributing.html).

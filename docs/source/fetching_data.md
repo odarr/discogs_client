@@ -1,161 +1,286 @@
-# Fetching data
+# Managing Release and Collection data
 
-Note that the examples in this chapter are shown using a Python REPL and require
-an existing [Client object](quickstart.md) already.
+Note that the examples in this chapter are shown using example Python code with `print` statements to show the results and require an existing [Client object](quickstart.md).
 
-## Artist
+Using the [Python REPL is another way to test and review data](fetching_data_repl.md) and information available using the Discogs API.
 
-Query for an artist using the artist's name:
+Most data about releases can be queried without having to authenticate using your [Client object](quickstart.md).  Other data including search, querying the records in your collection, or fetching album art requires authentication.  See the [Authentication section](https://github.com/joalla/discogs_client/blob/master/docs/source/authentication.md) for more information.
 
-```python
->>> artist = d.artist(956139)
->>> print(artist)
-<Artist "...">
->>> 'name' in artist.data.keys()
-True
+## Release Data
+
+Almost all data available on a Release page on the Discogs website is available using the `python3-discogs-client` library. If you were to run `dir()` on the `release` object, you would see the following list of all objects available to query, where 20017387 is the release ID.   Some common examples are shown below.
+
+```
+# Authenticate using your Client object
+d = discogs_client.Client(config.agent, user_token=config.my_token)
+
+print(dir(d.release(20017387)))
+
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_known_invalid_keys', 'artists', 'changes', 'client', 'companies', 'country', 'credits', 'data', 'data_quality', 'delete', 'fetch', 'formats', 'genres', 'id', 'images', 'labels', 'marketplace_stats', 'master', 'notes', 'refresh', 'save', 'status', 'styles', 'thumb', 'title', 'tracklist', 'url', 'videos', 'year']
 ```
 
-### Special properties
+### Artists
 
-Get a list of `Artist`s representing this artist's aliases:
+```
+print(d.release(20017387).artists[0].name, type(d.release(1443762).artists))
+```
+returns a list of Artists associated with the release:
 
-```python
->>> artist.aliases
-[...]
+```
+Chvrches <class 'list'>
 ```
 
-Get a list of `Release`s by this artist by page number:
+This returns a list as some releases have multiple artists:
 
-```python
->>> artist.releases.page(1)
-[...]
+```
+[<Artist 2672269 'Poliça'>, <Artist 4771951 'Stargaze (4)'>] Music For The Long Emergency
 ```
 
-## Release
+Data returns a dictionary including the URL to the page for the given release:
 
-Query for a release using its Discogs ID:
-
-```python
->>> release = d.release(221824)
+```
+print(d.release(20017387).data)
 ```
 
-### Special properties
-
-Get the title of this `Release`:
-
-```python
->>> release.title
-'...'
+```
+{'id': 20017387, 'resource_url': 'https://api.discogs.com/releases/20017387'}
 ```
 
-Get a list of all `Artist`s associated with this `Release`:
+### Formats
 
-```python
->>> release.artists
-[<Artist "...">]
+Formats returns a list of dictionaries that includes the kind of release, such as CD, Vinyl, and any other special properties of the release:
+
+```
+print(d.release(20017387).formats)
 ```
 
-Get the tracklist for this `Release`:
-
-```python
->>> release.tracklist
-[...]
+```
+[{'name': 'Vinyl', 'qty': '1', 'text': 'Red Transparent', 'descriptions': ['LP', 'Album']}]
 ```
 
-Get details of the first track on this `Release`
+### Genres 
 
-```python
->>> release.tracklist[0].title
-[...]
->>> release.tracklist[0].duration
-[...]
+Genres returns a list of genres associated with the release:
+
+```
+print(d.release(20017387).genres)
 ```
 
-Find the available properties of a `Track` object in the module docs:
-{class}`discogs_client.models.Track`
-
-Get the `MasterRelease` for this `Release`:
-
-```python
->>> release.master
-<MasterRelease "...">
+```
+['Electronic', 'Pop']
 ```
 
-Get a list of all `Label`s for this `Release`:
+### Images
 
-```python
->>> release.labels
-[...]
+Images returns a list of all images and its URL associated with the release.  You must be authenticated to get the image URL.  The first image is is the primary image found on the Release page:
+
+```
+print(d.release(20017387).images[0])
 ```
 
-## MasterRelease
-
-Query for a master release using its Discogs ID:
-
-```python
->>> master_release = d.master(120735)
+```
+{'type': 'primary', 'uri': 'https://img.discogs.com/XbUkIoS6p-yb9U36xSKethiXs0U=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-20017387-1631064590-2485.jpeg.jpg', 'resource_url': 'https://img.discogs.com/XbUkIoS6p-yb9U36xSKethiXs0U=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-20017387-1631064590-2485.jpeg.jpg', 'uri150': 'https://img.discogs.com/tbjnf4pVYhNvxNRDqZWrXtkKZcc=/fit-in/150x150/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-20017387-1631064590-2485.jpeg.jpg', 'width': 600, 'height': 600}
 ```
 
-### Special properties
+### Tracklist
 
-Get the key `Release` for this `MasterRelease`:
+Tracklist returns a list of tracks and track position on the album associated with the release:
 
-```python
->>> master_release.main_release
-<Release "...">
+```
+print(d.release(20017387).tracklist)
 ```
 
-Get the title of this `MasterRelease`:
-
-```python
->>> master_release.title
-'...'
->>> master_release.title == master_release.main_release.title
-True
+```
+[<Track 'A1' 'Asking For A Friend'>, <Track 'A2' 'He Said She Said'>, <Track 'A3' 'California'>, <Track 'A4' 'Violent Delights'>, <Track 'A5' 'How Not To Drown '>, <Track 'B1' 'Final Girl'>, <Track 'B2' 'Good Girls'>, <Track 'B3' 'Lullabies'>, <Track 'B4' 'Nightmares'>, <Track 'B5' "Better If You Don't">]
 ```
 
-Get a list of `Release`s representing other versions of this `MasterRelease` by
-page number:
-
-```python
->>> master_release.versions.page(1)
-[...]
+```
+print(d.release(20017387).tracklist[0].title)
 ```
 
-Get the tracklist for this `MasterRelease`:
+```
+Asking For A Friend
+```
+### Community Details
 
 ```python
->>> master_release.tracklist
-[...]
+release = d.release(15343679)
+community_details = release.community
+
+print(community_details)
+print(community_details.rating)
+print(community_details.want)
+print(community_details.have)
+print(community_details.contributors)
 ```
 
-## Label
-
-Query for a label using the label's ID:
-
-```python
->>> label = d.label(6170)
+```
+<CommunityDetails want/have: 34/74>
+<Rating avg: 4.5>
+34
+74
+[<User 1053297 'ManikRecs'>, <User 1241908 'neurosis76'>, <User 8867757 'silyn1'>, <User 3410038 'evasstra'>]
 ```
 
-### Special properties
+Additional attributes are also available. Learn more about them in the reference docs of the {class}`~discogs_client.models.CommunityDetails` class.
 
-Get a list of `Release`s from this `Label` by page number:
+## Collection Data
 
-```python
->>> label.releases.page(1)
-[...]
+To access the collection an [authenticated Client object](authentication.md) is required.
+
+Assuming the {class}`.Client` object is called `d`:
+
+```
+me=d.identity()
+print(me)
 ```
 
-Get a list of `Label`s representing sublabels associated with this `Label`:
+will return:
 
-```python
->>> label.sublabels
-[...]
+```
+<User 123456 'discogs_username'>
 ```
 
-Get the `Label`'s parent label, if it exists:
+Loop through _all_ the items in the collection:
+
+```
+for item in me.collection_folders[0].releases:
+    print(item)
+```
+
+```
+<CollectionItemInstance 731053 'DJ-Kicks'>
+<CollectionItemInstance 2230329 'Drumlesson Zwei'>
+<CollectionItemInstance 6794957 'The K&D Sessions™'>
+...
+...
+```
+
+The items in the collection always are {class}`.CollectionItemInstance` objects.
+
+
+### Collection Items by Folder
+
+- Folder 0 is a special folder containing all the release in the user's collection
+- Folder 1 is the "Uncategorized" folder.
+- Folders 2 to n are any other collection folders manually created by the user.
+
+To loop through the "Uncategorized" folder:
+
+```
+for item in me.collection_folders[1].releases:
+    print(item)
+```
+
+Find out more about the available attributes of a {class}`.CollectionItemInstance`:
+
+```
+print(dir(me.collection_folders[1].releases[123]:
+```
+
+```
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_known_invalid_keys', 'changes', 'client', 'data', 'date_added', 'delete', 'fetch', 'folder_id', 'id', 'notes', 'rating', 'refresh', 'release', 'save']
+```
+
+Get a full {class}`.Release` object of a collection item:
+
+```
+print(me.collection_folders[1].releases[123].release)
+```
+
+```
+<Release 1692728 'Phylyps Trak II'>
+```
+
+Get the {attr}`~.Release.title` of the {class}`.Release`:
+
+```
+print(me.collection_folders[1].releases[123].release.title)
+```
+
+```
+Phylyps Trak II
+```
+
+
+### Collection Items by Release
+
+As seen in the [Collection Items by Folder chapter](fetching_data.md#collection-items-by-folder), collection items can be accessed by iterating through a specific folder or the whole collection.
+
+An alternative approach is using the {meth}`.collection_items` method which can be faster than iterating through the collection. After passing this method a `release_id` or {class}`.Release` object, it will return a list of {class}`.CollectionItemInstance` objects.
+
+As it is possible that you have (or physically own) multiple copies of the same release inside one or more collection folders, using this method will return all copies of the release no matter which folder it is located in.
+
+The example code below will print all {class}`.CollectionItemInstance`s of release 22155985. The attributes of the {class}`.CollectionItemInstance`s will show additional information, such as the folder it is located in or the details of the {class}`.Release`.
 
 ```python
->>> label.parent_label
-<Label "Warp Records Limited">
+release_instances = me.collection_items(22155985)
+for instance in release_instances:
+    print(instance)
+    print(instance.folder_id)
+    print(instance.release)
+```
+
+
+### Adding a Release to a Collection Folder
+
+```python
+me.collection_folders[2].add_release(17392219)
+```
+
+_{meth}`.add_release` also accepts {class}`.Release` objects_
+
+
+### Removing a Release from a Collection Folder
+
+Removing a single release instance identified by its index:
+
+```python
+folder = me.collection_folders[2]
+releases = folder.releases
+# Delete the first instance in releases
+folder.remove_release(releases[0])
+```
+
+To filter out which instance to remove we could also use the attributes of the {class}`.Release` object attached to the {class}`.CollectionItemInstance`:
+
+```python
+folder = me.collection_folders[2]
+for instance in folder.releases:
+    if instance.release.title == "Internet Protocol":
+        folder.remove_release(instance)
+```
+
+Another approach to removing instances from collection folders if we know a release ID already would be to make use of the {meth}`.collection_items` method. This way we could delete all the instances from all its containing folders:
+
+```python
+release_instances = me.collection_items(22155985)
+for instance in release_instances:
+    folder = me.collection_folders[instance.folder_id]
+    folder.remove_release(instance)
+```
+
+_{meth}`.remove_release` only accepts {class}`.CollectionItemInstance` objects_
+
+
+## Using {meth}`~discogs_client.models.PrimaryAPIObject.fetch` to get other data
+
+You can use the {meth}`~discogs_client.models.PrimaryAPIObject.fetch` method to get any data from an object, including data that may not be accessible via the objects properties.
+
+An [authenticated Client object](authentication.md) is required. To understand the Discogs API, see the [Discogs API documentation](https://www.discogs.com/developers/) or use the community [Postman collection](https://github.com/leopuleo/discogs-postman) to test the API.
+
+Examples of using the {meth}`~discogs_client.models.PrimaryAPIObject.fetch` method:
+
+```python
+release = d.release(1026691)
+
+print(release.id)
+print(release.fetch('id'))
+print(release.fetch('community')['rating'])
+```
+
+```python
+1026691
+1026691
+{'count': 274, 'average': 4.38}
 ```
